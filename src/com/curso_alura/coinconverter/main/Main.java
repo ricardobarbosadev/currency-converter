@@ -1,8 +1,9 @@
 package com.curso_alura.coinconverter.main;
 
+import com.curso_alura.coinconverter.http.HttpJsonResponse;
 import com.curso_alura.coinconverter.http.HttpRequest;
 import java.util.HashMap;
-import java.util.Map;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -13,12 +14,19 @@ public class Main {
             HttpRequest request = new HttpRequest(apiUrl, "GET");
 
             // Executar a requisição e obter a resposta
-            String response = request.execute();
+            String responseBody = request.execute();
 
-            // Imprimir a resposta
-            System.out.println(response);
+            // Processar a resposta como um HttpJsonResponse
+
+            HttpJsonResponse response = parseJsonResponse(responseBody);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    private static HttpJsonResponse parseJsonResponse(String responseBody) {
+        return new HttpJsonResponse(200, new HashMap<>(), responseBody);
+    }
+
+
 }
