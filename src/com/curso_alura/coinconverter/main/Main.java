@@ -19,9 +19,13 @@ public class Main {
             // Processar a resposta como um HttpJsonResponse
 
             HttpJsonResponse response = parseJsonResponse(responseBody);
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
     }
 
     private static HttpJsonResponse parseJsonResponse(String responseBody) {
