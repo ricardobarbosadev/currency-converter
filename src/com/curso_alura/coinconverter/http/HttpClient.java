@@ -15,8 +15,9 @@ public class HttpClient {
         con.setRequestProperty("User-Agent", USER_AGENT);
 
         int responseCode = con.getResponseCode();
-        System.out.println("Sending 'GET' request to URL: " + url);
-        System.out.println("Response Code: " + responseCode);
+        if (responseCode != HttpURLConnection.HTTP_OK) {
+            throw new RuntimeException("Failed : HTTP error code : " + responseCode);
+        }
 
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
         String inputLine;

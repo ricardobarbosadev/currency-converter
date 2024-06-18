@@ -36,5 +36,5 @@ public class HttpJsonResponse implements HttpResponse{
         return gson.fromJson(body, JsonObject.class);
     }
 
-    // Adicionar métodos adicionais conforme necessário para acessar dados específicos da resposta JSON
+
 }
