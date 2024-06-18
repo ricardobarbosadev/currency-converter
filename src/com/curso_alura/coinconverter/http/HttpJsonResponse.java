@@ -31,10 +31,10 @@ public class HttpJsonResponse implements HttpResponse{
         return body;
     }
 
-    public JsonObject getJsonObject() {
+   /* public JsonObject getJsonObject() {
         Gson gson = new Gson();
         return gson.fromJson(body, JsonObject.class);
-    }
+    }*/
 
 
 }

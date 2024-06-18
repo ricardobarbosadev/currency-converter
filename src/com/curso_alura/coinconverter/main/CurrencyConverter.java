@@ -3,6 +3,7 @@ package com.curso_alura.coinconverter.main;
 import com.curso_alura.coinconverter.http.HttpClient;
 import com.curso_alura.coinconverter.http.HttpJsonResponse;
 import com.curso_alura.coinconverter.http.HttpRequest;
+import com.curso_alura.coinconverter.http.HttpResponse;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -22,7 +23,7 @@ public class CurrencyConverter {
             // Obter a lista de moedas suportadas
             Map<String, String> currencyNames = getSupportedCurrencies(httpClient);
 
-            if (currencyNames == null || currencyNames.isEmpty()) {
+            if (currencyNames.isEmpty()) {
                 System.out.println("Falha ao obter a lista de moedas suportadas.");
                 return;
             }
@@ -89,8 +90,9 @@ public class CurrencyConverter {
                     System.out.println("Requesting URL: " + apiUrlWithBaseAndTarget);
 
                     // Fazer requisição HTTP
-                    HttpRequest request = new HttpRequest(apiUrlWithBaseAndTarget, "GET");
-                    String responseBody = httpClient.sendGetRequest(apiUrlWithBaseAndTarget);
+                    //HttpRequest request = new HttpRequest(apiUrlWithBaseAndTarget, "GET");
+                    HttpResponse httpResponse = httpClient.sendGetRequest(apiUrlWithBaseAndTarget);
+                    String responseBody = httpResponse.getBody();
                     System.out.println("Response: " + responseBody);
 
                     // Processar a resposta JSON
@@ -130,8 +132,8 @@ public class CurrencyConverter {
 
 
             // Fazer requisição HTTP
-            String responseBody = httpClient.sendGetRequest(OPEN_EXCHANGE_RATES_URL);
-
+            HttpResponse httpResponse = httpClient.sendGetRequest(OPEN_EXCHANGE_RATES_URL);
+            String responseBody = httpResponse.getBody();
 
 
             // Processar a resposta JSON  segunda alternativa
