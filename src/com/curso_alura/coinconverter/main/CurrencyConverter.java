@@ -3,12 +3,14 @@ package com.curso_alura.coinconverter.main;
 import com.curso_alura.coinconverter.http.HttpClient;
 import com.curso_alura.coinconverter.services.CurrencyService;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
 public class CurrencyConverter {
+
 
     private static final List<String> ALLOWED_CURRENCIES = List.of("USD", "EUR", "BRL", "JPY", "CAD", "CZK", "INR", "CNY", "CUP", "AOA");
 
