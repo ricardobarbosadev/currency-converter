@@ -4,19 +4,29 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HttpClient {
     private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36";
 
-    public String sendGetRequest(String url) throws Exception {
+    public HttpJsonResponse sendGetRequest(String url) throws Exception {
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", USER_AGENT);
 
         int responseCode = con.getResponseCode();
-        System.out.println("Sending 'GET' request to URL: " + url);
-        System.out.println("Response Code: " + responseCode);
+        if (responseCode != HttpURLConnection.HTTP_OK) {
+            throw new RuntimeException("Failed : HTTP error code : " + responseCode);
+        }
+
+        Map<String, String> headers = new HashMap<>();
+        con.getHeaderFields().forEach((key, values) -> {
+            if (key != null && !values.isEmpty()) {
+                headers.put(key, values.get(0));
+            }
+        });
 
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
         String inputLine;
@@ -27,6 +37,6 @@ public class HttpClient {
         }
         in.close();
 
-        return response.toString();
+        return new HttpJsonResponse(responseCode, headers, response.toString());
     }
 }

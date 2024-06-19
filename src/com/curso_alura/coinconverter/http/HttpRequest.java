@@ -9,8 +9,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 public class HttpRequest {
-    private String url;
-    private String method;
+    private final String url;
+    private final String method;
     private String requestBody;
     private Map<String, String> headers;
     private Map<String, String> queryParams;
