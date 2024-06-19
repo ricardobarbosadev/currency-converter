@@ -4,15 +4,23 @@ import com.curso_alura.coinconverter.http.HttpClient;
 import com.curso_alura.coinconverter.http.HttpResponse;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import io.github.cdimascio.dotenv.Dotenv;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class CurrencyService {
+    // Carregar as variáveis de ambiente do arquivo .env
+    static Dotenv dotenv = Dotenv.load();
 
-    private static final String EXCHANGE_RATE_API_URL = "https://v6.exchangerate-api.com/v6/fd999e531529daf2bbedf589/pair/";
-    private static final String OPEN_EXCHANGE_RATES_URL = "https://openexchangerates.org/api/currencies.json?app_id=da773b022be34e93a6c713704ca34f81";
+    // Obter o valor da variável API_KEY
+    static String apiKeyConverter = dotenv.get("EXCHANGE_RATE_API_KEY");
+    static String apiKeyCoinNames = dotenv.get("OPEN_EXCHANGE_RATES_APP_ID");
+
+
+    private static final String EXCHANGE_RATE_API_URL = "https://v6.exchangerate-api.com/v6/" + apiKeyConverter + "/pair/";
+    private static final String OPEN_EXCHANGE_RATES_URL = "https://openexchangerates.org/api/currencies.json?app_id=" + apiKeyCoinNames + "/";
     private static final List<String> ALLOWED_CURRENCIES = List.of("USD", "EUR", "BRL", "JPY", "CAD", "CZK", "INR", "CNY", "CUP", "AOA");
 
     private final HttpClient httpClient;

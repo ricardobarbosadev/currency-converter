@@ -2,6 +2,8 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+!**/src/com/curso_alura/coinconverter/http/HttpRequest.java
+.env
 
 ### Eclipse ###
 .apt_generated
