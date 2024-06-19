@@ -1,7 +1,5 @@
 package com.curso_alura.coinconverter.http;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
 import java.util.Map;
 
@@ -31,10 +29,6 @@ public class HttpJsonResponse implements HttpResponse{
         return body;
     }
 
-   /* public JsonObject getJsonObject() {
-        Gson gson = new Gson();
-        return gson.fromJson(body, JsonObject.class);
-    }*/
 
 
 }
