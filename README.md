@@ -27,7 +27,7 @@ LuxCoin Converter is a simple currency conversion application that uses two APIs
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-username/luxcoin-converter.git
+    git clone https://github.com/ricardobarbosadev/currency-converter
     ```
 2. Navigate to the project directory:
     ```bash
